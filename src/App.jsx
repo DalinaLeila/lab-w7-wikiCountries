@@ -64,6 +64,8 @@ class App extends React.Component {
     if (this.state.selectedCountry) {
       selectedCountry = (
         <CountryDetail
+          index={this.state.selectedCountry.cca3}
+          countries={this.state.countries}
           cName={this.state.selectedCountry.name.official}
           flag={this.state.selectedCountry.flag}
           capital={this.state.selectedCountry.capital[0]}
@@ -124,7 +126,6 @@ class App extends React.Component {
     // console.log(border);
     this.state.countries.map(c => {
       if (c.cca3 === border) {
-        // console.log(c);
         this.setState({
           selectedCountry: c
         });
