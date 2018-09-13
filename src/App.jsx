@@ -4,6 +4,8 @@ import "./style.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 import Navigation from "./Navigation";
+import Search from "./Search";
+
 import CountryList from "./CountryListPage/CountryList";
 import CountryDetail from "./CountryDetailPage/CountryDetail";
 
@@ -16,6 +18,7 @@ class App extends React.Component {
       search: "",
       selectedCountry: null
     };
+    this._search = this._search.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -36,7 +39,7 @@ class App extends React.Component {
             <CountryList
               index={c.cca3}
               key={i}
-              country={c.name.official}
+              country={c.name.common}
               flag={c.flag}
               select={this._select}
             />
@@ -52,7 +55,7 @@ class App extends React.Component {
             <CountryList
               index={c.cca3}
               key={i}
-              country={c.name.official}
+              country={c.name.common}
               flag={c.flag}
               select={this._select}
             />
@@ -66,7 +69,7 @@ class App extends React.Component {
         <CountryDetail
           index={this.state.selectedCountry.cca3}
           countries={this.state.countries}
-          cName={this.state.selectedCountry.name.official}
+          cName={this.state.selectedCountry.name.common}
           flag={this.state.selectedCountry.flag}
           capital={this.state.selectedCountry.capital[0]}
           area={this.state.selectedCountry.area}
@@ -80,12 +83,7 @@ class App extends React.Component {
         <Navigation />
         <React.Fragment>
           <div className="container mt-3">
-            <input
-              onChange={this._search}
-              placeholder="search country"
-              type="text"
-              className="form-control"
-            />
+            <Search search={this._search} />
           </div>
           <div className="container">
             <div className="row">
